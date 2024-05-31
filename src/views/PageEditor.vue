@@ -1,10 +1,14 @@
 <script setup>
-import { reactive, onMounted } from "vue";
+import { reactive, onMounted, defineProps } from "vue";
 import { useStore } from "vuex";
 import BlockText from "@/components/BlockText.vue";
 import BlockImage from "@/components/BlockImage.vue";
 import BlockTextImage from "@/components/BlockTextImage.vue";
 import router from "@/router";
+
+const props = defineProps ({
+  idPage: String
+})
 
 const store = useStore()
 
@@ -58,15 +62,9 @@ const savePage = () => {
   router.push({ name: 'PageList'})
 };
 
-const clearForm = () => {
-  page.idPage = ''
-  page.namePage = ''
-  page.blocks = []
-}
-
 onMounted( () => {
-  if(router.currentRoute.value.params.idPage) {
-    page.idPage = router.currentRoute.value.params.idPage
+  if(props.idPage) {
+    page.idPage = props.idPage
     Object.assign(page, store.getters.getPageById(page.idPage))
   }
 })
@@ -75,12 +73,6 @@ onMounted( () => {
 <template>
   <div class="page-editor__container">
     <div class="page-editor__new-page">
-      <router-link to="/edit">
-        <button v-show="page.idPage"
-          @click="clearForm">
-          Добавить новую страницу
-        </button>
-      </router-link>
       <h1 v-if='!page.idPage'>
         Создать новую страницу
       </h1>
@@ -113,7 +105,7 @@ onMounted( () => {
         <div class="page-editor__block"
           :style="{backgroundColor : block.content.backgroundColor}"
           v-for="(block, index) in page.blocks"
-          :key="index"
+          :key="block.idPage"
         >
           <component 
             :is="getBlockType(block.type)" 

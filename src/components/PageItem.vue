@@ -20,14 +20,11 @@ const editPage = (page) => {
   <div class="page-item">
     <div class="page-item__name" 
       @click="editPage(page)">
-      <p>
-          {{ page.namePage }}
-      </p>
+      <p>{{ page.namePage }}</p>
     </div>
     <button class="page-item__delete-item"
       type="button" 
-      @click="store.commit('deletePage', props.index)"
-      >
+      @click="store.commit('deletePage', props.index)">
       x
     </button>
   </div>

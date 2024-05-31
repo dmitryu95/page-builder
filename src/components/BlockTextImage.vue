@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch } from "vue"
+import { watch } from "vue"
 
 const props = defineProps({
   block: {
@@ -34,19 +34,16 @@ watch(content, () => {
     :style = "{ flexDirection: content.reverse ? 'row-reverse' : 'row' }">
     <div class="block-text-image__text-column">
       <input class="block-text-image__title"
-        :style="{ backgroundColor: content.backgroundColorTitle }"
         v-model="content.title" 
         placeholder="Заголовок" 
       />
       <textarea class="block-text-image__text"    
-        :style="{ backgroundColor: content.backgroundColorText }"
         v-model="content.text">
       </textarea>
     </div>
       <div class="block-text-image__image-column">
         <img v-if="content.img" 
           class="block-text-image__image"
-          :style="{ backgroundColor: content.backgroundColorImg }"
           :src="content.img" 
           width="150"
           alt="Изображение"
@@ -66,25 +63,25 @@ watch(content, () => {
         Реверсировать
       </label>
 
-      <input type="color"
+      <!-- <input type="color"
         v-model="content.backgroundColorTitle"
         id="background-color-title">
       <label for="background-color-title">
         Фон заголовка
-      </label>
+      </label> -->
 
-      <input type="color"
+      <!-- <input type="color"
         v-model="content.backgroundColorText"
         id="background-color-text">
       <label for="background-color-text">
         Фон текста
-      </label>
+      </label> -->
 
       <input type="color"
-        v-model="content.backgroundColorImg"
+        v-model="content.backgroundColor"
         id="background-color-img">
       <label for="background-color-img">
-        Фон картинки
+        Фон блока
       </label>
 
     <button class="block-text-image__delete"

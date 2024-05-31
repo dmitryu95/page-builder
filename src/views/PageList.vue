@@ -1,3 +1,13 @@
+<script setup>
+import { ref } from "vue";
+import PageItem from '@/components/PageItem'
+import { useStore } from "vuex";
+
+const store = useStore()
+const pages = ref(store.getters.getPages)
+
+</script>
+
 <template>
   <div class="page-list">
     <h1>Список страниц: {{ pages.length }}</h1>
@@ -16,16 +26,6 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { ref } from "vue";
-import PageItem from '@/components/PageItem'
-import { useStore } from "vuex";
-
-const store = useStore()
-const pages = ref(store.getters.getPages)
-
-</script>
 
 <style lang="scss" scoped>
 .page-list {

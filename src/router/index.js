@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import PageList from '../views/PageList.vue'
 import PageEditor from '../views/PageEditor.vue'
 
@@ -11,7 +11,8 @@ const routes = [
   {
     path: '/edit/:idPage?',
     name: 'PageEditor',
-    component: PageEditor
+    component: PageEditor, 
+    props: true
   }
 ]
 
